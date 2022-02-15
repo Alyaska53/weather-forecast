@@ -17,8 +17,9 @@ body {
 }
 
 #root {
-  width: 33%;
-  max-width: 750px;
+  width: 25%;
+  max-width: 600px;
+  min-width: 350px;
   min-height: 400px;
   margin: 0 auto;
 }
@@ -68,4 +69,19 @@ body {
 
 .weather-icon {
   font-size: 200px;
+}
+
+@media (max-width: 350px) {
+  #root {
+    width: 290px;
+    min-width: 290px;
+  }
+
+  .entry-field {
+    width: 70%;
+  }
+
+  .history-btn {
+    width: 27%;
+  }
 }
