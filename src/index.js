@@ -13,18 +13,31 @@ class WeatherDescription extends React.Component {
   render() {
     const weather = this.props.weather;
 
-    return (
-      <div className="weather-container__description">
-        <i className={"weather-icon owf " + weather.icon}></i>
-        <div className="weather-error">{weather.error}</div>
-        <div>
-          <span className="temperature">{weather.temperature}</span>
-          <span className="description"> {weather.description}</span>
+    if (!weather.city) {
+      return (
+        <div className="weather-container__description">
+          <div>Enter city please</div>
         </div>
-        <div className="humidity">{weather.humidity}</div>
-        <div className="wind-speed">{weather.windSpeed}</div>
-      </div>
-    );
+      );
+    } else if (weather.error) {
+      return (
+        <div className="weather-container__description">
+          <div>{weather.error}</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="weather-container__description">
+          <i className={"weather-icon owf " + weather.icon}></i>
+          <div>
+            <span>{weather.temperature}</span>
+            <span> {weather.description}</span>
+          </div>
+          <div>{weather.humidity}</div>
+          <div>{weather.windSpeed}</div>
+        </div>
+      );
+    }
   }
 }
 
@@ -44,6 +57,7 @@ class App extends React.Component {
 
   getWeatherDescription(data) {
     this.setState({
+      city: data.name,
       icon: `owf-${data.weather[0].id}`,
       temperature: `${Math.floor(data.main.temp)}°C`,
       description: data.weather[0].description,
@@ -55,6 +69,7 @@ class App extends React.Component {
 
   getError(city) {
     this.setState({
+      city: city,
       icon: '',
       temperature: '',
       description: '',
