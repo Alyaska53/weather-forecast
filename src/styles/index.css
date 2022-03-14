@@ -10,22 +10,22 @@
 
 body {
   background: linear-gradient(#fde8ad, #ffcbf8);
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
 }
 
 #root {
-  width: 25%;
-  max-width: 600px;
-  min-width: 350px;
-  min-height: 400px;
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .weather-container {
-  width: 100%;
+  position: static;
+  width: 70%;
+  max-width: 400px;
+  min-height: 400px;
+  margin: 0 auto;
 }
 
 .weather-container__header {
@@ -71,8 +71,153 @@ body {
   font-size: 200px;
 }
 
-@media (max-width: 350px) {
-  #root {
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #505050ab;
+}
+
+.search-history-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+  max-width: 1000px;
+  max-height: 750px;
+  border-radius: 10px;
+  padding: 15px;
+  background: #fff;
+}
+
+.search-history-container__header {
+  display: flex;
+  flex-grow: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-history-title {
+  font-size: 22px;
+}
+
+.close-btn {
+  width: 23px;
+  height: 23px;
+  background: url(../images/close.svg) no-repeat;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+.history-empty {
+  align-self: center;
+  margin: 0 auto;
+}
+
+.search-history-container__list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 10px;
+  overflow: auto;
+}
+
+.search-history-container__list::-webkit-scrollbar {
+  width: 0;
+}
+
+.day-history-container {
+  width: 97%;
+  margin: 10px auto 0;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #bbbbbb;
+}
+
+.day-history-header {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #929292;
+  font-size: 20px;
+}
+
+.day-history-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-history-list__city-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 5px;
+  font-size: 17px;
+}
+
+.day-history-list__city-row div {
+  padding-right: 15px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.city-row-icon {
+  font-size: 36px;
+}
+
+@media (max-width: 900px) {
+  .search-history-container {
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .search-history-title {
+    font-size: 18px;
+  }
+
+  .day-history-container {
+    width: 97%;
+    margin: 10px auto 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #bbbbbb;
+  }
+
+  .day-history-header {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #929292;
+    font-size: 16px;
+  }
+
+  .day-history-list__city-row {
+    font-size: 14px;
+  }
+
+  .city-row-icon {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  .day-history-list__city-row {
+    flex-wrap: wrap;
+    border-bottom: 0.5px solid #bbbbbb;
+  }
+}
+
+@media (max-width: 450px) {
+  .weather-container {
     width: 290px;
     min-width: 290px;
   }
